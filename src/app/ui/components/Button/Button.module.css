@@ -1,0 +1,50 @@
+:root {
+  --border-radius: 0px;
+  --text-color-disabled: rgb(200, 200, 200);
+  --text-color: rgb(80, 80, 80);
+  --text-color-focus: rgb(60, 60, 60);
+  --border-primary-color: rgb(6, 12, 46);
+}
+
+button.base {
+  display: block;
+  color: var(--text-color);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-primary-color);
+  text-transform: lowercase;
+  outline: unset;
+  transition: transform 100ms ease-in-out;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid var(--border-primary-color);
+}
+
+button.base:disabled {
+  color: var(--text-color-disabled);
+}
+
+button.base:disabled:active {
+  cursor: default;
+  transform: unset;
+}
+
+button.base:disabled:hover {
+  color: var(--text-color-disabled);
+}
+
+button.base:hover {
+  color: var(--text-color-focus);
+}
+
+button.base:active {
+  transform: scale(90%);
+}
+
+button.base > * {
+  cursor: pointer;
+}
+
+/* variants */
+button.variant-borderless {
+  border: none;
+}
