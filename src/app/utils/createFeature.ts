@@ -1,26 +1,33 @@
-export type ActionPayload<Value> = {
+export type ActionPayload<PayloadType = never> = {
     type: string,
-    payload: Value
+    payload: PayloadType
 }
-
 
 type Feature = <State>(props: {
     name: string,
     initialState: State,
     reducers: {
-        [name: string]: (state: State, action: any) => void
+        [name: string]: (state: State, action: ActionPayload) => void
     }
 }) => {
     name: string,
     initialState: State
     reducer: any
-    actions: any
+    actions: {
+        [name: string]: (payload?: any) => void
+    }
 }
+
+
+type ActionList = {
+    [key: string]: (payload?: ActionPayload) => void
+}
+
 
 export const createFeature: Feature = ({ name, initialState, reducers }) => {
 
-    const rootReducer = (state = initialState, action: any) => {
-        reducers[action.type](state, action)
+    const rootReducer = (state = initialState, action: ActionPayload) => {
+        reducers[action.type](state, action);
         return state
     }
 
@@ -28,12 +35,12 @@ export const createFeature: Feature = ({ name, initialState, reducers }) => {
         return Object
             .keys(reducers)
             .reduce((action, name: string) => {
-                action[name] = (payload: any) => ({
+                action[name] = (payload?: ActionPayload) => ({
                     type: name,
                     payload
                 })
                 return action
-            }, {} as any);
+            }, {} as ActionList);
     }
 
     return {        

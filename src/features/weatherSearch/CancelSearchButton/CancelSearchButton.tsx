@@ -6,7 +6,7 @@ import { Button } from "app/ui";
 export const CancelSearchButton = () => {
   const [state, dispatch] = useContext(AppStore);
   const isDisabled =
-    !(state.weather.dirtyState.search || state.weather.suggestions.length >= 1)
+    !(state.weather.dirtyState?.search || state.weather.suggestions?.length >= 1)
 
   const resetHandler = () => {
     dispatch(reset());

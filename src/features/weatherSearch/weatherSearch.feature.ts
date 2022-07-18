@@ -29,16 +29,16 @@ export const weatherSearch = createFeature<State>({
   name: 'weatherSearch',
   initialState,
   reducers: {
-    setSearch(state, action: any) {
+    setSearch(state, action: ActionPayload<string>) {
       state.dirtyState.search = action.payload
     },
-    selectItemId(state, action: any) {
+    selectItemId(state, action: ActionPayload<number>) {
       state.dirtyState.selectedItemId = action.payload
     },
-    setSearchResults(state, action: any) {
+    setSearchResults(state, action: ActionPayload<[]>) {
       state.suggestions = action.payload
     },
-    addOrUpdateForecast(state, action: any) {
+    addOrUpdateForecast(state, action: ActionPayload<{ cityId: string, temperature: string}>) {
       const { temperature, cityId } = action.payload;
       state.forecast = {
         ...state.forecast,

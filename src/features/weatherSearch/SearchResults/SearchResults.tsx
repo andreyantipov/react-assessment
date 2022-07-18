@@ -87,7 +87,7 @@ export const SearchResults: FCC = () => {
       fetchForecast(listCityIndex);
     };
 
-    if (suggestions.length >= 1) {
+    if (suggestions?.length >= 1) {
       return (
         <div className={$["search-results"]}>
           <List onClick={selectItemHandler} ref={list}>
