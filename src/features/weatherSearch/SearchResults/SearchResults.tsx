@@ -25,13 +25,11 @@ export const SearchResults: FCC = () => {
         } = state.weather.suggestions[listCityIndex];
 
         getWeather(lat, lon).then((data) => {
-          if (data.main.temp) {
-            dispatch(
-              addOrUpdateForecast({
-                cityId: listCityIndex,
-                temperature: +(data.main.temp / 10).toFixed(1),
-              })
-            );
+          if (data.main.temp && data.name) {
+            dispatch(addOrUpdateForecast({
+              temp: data.main.temp,
+              name: data.name
+            }));
           }
         });
       }
@@ -101,11 +99,6 @@ export const SearchResults: FCC = () => {
                   <span key="text">
                     {h(country)} → {h(name)}
                   </span>
-                  {state.weather.forecast[index] && (
-                    <span key="weather">
-                      {state.weather.forecast[index].temperature} °C
-                    </span>
-                  )}
                 </ListItem>
               );
             })}
@@ -113,12 +106,11 @@ export const SearchResults: FCC = () => {
         </div>
       );
     } else return null;
-  }, [
-    suggestions,
-    dispatch,
-    fetchForecast,
-    dirtyState.selectedItemId,
-    h,
-    state.weather.forecast,
-  ]);
+  }, [suggestions, dispatch, fetchForecast, dirtyState.selectedItemId, h]);
 };
+
+// {state.weather.forecast[index] && (
+//   <span key="weather">
+//     {state.weather.forecast[index].temperature} °C
+//   </span>
+// )}

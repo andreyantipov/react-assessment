@@ -6,10 +6,11 @@ import { reset } from './weatherSearch.feature'
 import { SearchCityNamesInput } from "./SearchCityNamesInput/SearchCityNamesInput";
 import { SearchResults } from './SearchResults/SearchResults'
 import { CancelSearchButton } from "./CancelSearchButton/CancelSearchButton";
+import { WeatherOverview } from "./WeatherOverview/WeatherOverview";
 
 export const WeatherSearch = () => {
   const container = useRef<HTMLDivElement>(null);
-  const [, dispatch] = useContext(AppStore);
+  const [state, dispatch] = useContext(AppStore);
 
   useGlobalDismiss(container, () => {
     dispatch(reset());
@@ -17,8 +18,8 @@ export const WeatherSearch = () => {
 
   return (
       <SearchBar ref={container}>
-        <SearchCityNamesInput />        
-        <SearchResults />
+        <SearchCityNamesInput />
+        {state.weather.forecast ? <WeatherOverview /> :  <SearchResults />}        
         <CancelSearchButton />
       </SearchBar>
   );

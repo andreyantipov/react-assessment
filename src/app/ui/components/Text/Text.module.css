@@ -1,7 +1,3 @@
-.base {
-    color: white;
-}
-
 /* size */
 .size-small {
     font-size: 75%;
@@ -13,4 +9,16 @@
 
 .size-large {
     font-size: 125%;
+}
+
+.size-h1 {
+    font-size: 150%;
+}
+
+.color-primary {
+    color: white;
+}
+
+.color-secondary {
+    color: black;
 }

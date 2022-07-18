@@ -1,15 +1,21 @@
 import { useContext } from "react";
 import { AppStore } from "app";
-import { reset } from "../weatherSearch.feature";
+import { reset, resetForecast } from "../weatherSearch.feature";
 import { Button } from "app/ui";
 
 export const CancelSearchButton = () => {
   const [state, dispatch] = useContext(AppStore);
-  const isDisabled =
-    !(state.weather.dirtyState?.search || state.weather.suggestions?.length >= 1)
+  const isDisabled = !(
+    state.weather.dirtyState?.search ||
+    typeof state.weather.forecaset !== "undefined"
+  );
 
   const resetHandler = () => {
-    dispatch(reset());
+    if (state.weather.forecast) {
+      dispatch(resetForecast());
+    } else {
+      dispatch(reset());
+    }
   };
 
   return (

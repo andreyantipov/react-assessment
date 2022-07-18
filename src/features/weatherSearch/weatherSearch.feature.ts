@@ -7,11 +7,7 @@ type State = {
     selectedItemId: number
   },
   suggestions: {},
-  forecast: {
-    [key: number]: {
-      temperature: string
-    }
-  }
+  forecast: {} | undefined
 }
 
 const initialState: State = {
@@ -21,7 +17,7 @@ const initialState: State = {
     selectedItemId: 0,
   },
   suggestions: [],
-  forecast: {}
+  forecast: undefined
 };
 
 
@@ -38,21 +34,14 @@ export const weatherSearch = createFeature<State>({
     setSearchResults(state, action: ActionPayload<[]>) {
       state.suggestions = action.payload
     },
-    addOrUpdateForecast(state, action: ActionPayload<{ cityId: string, temperature: string}>) {
-      const { temperature, cityId } = action.payload;
-      state.forecast = {
-        ...state.forecast,
-        [cityId]: {
-          temperature
-        }
-      }
+    addOrUpdateForecast(state, action: ActionPayload<{ temperature: string }>) {
+      state.forecast = action.payload
     },
     resetForecast(state) {
-      state.forecast = []
+      state.forecast = undefined
     },
     reset(state) {
       state.dirtyState.search = ""
-      state.forecast = {}
       state.suggestions = []
     },
   }

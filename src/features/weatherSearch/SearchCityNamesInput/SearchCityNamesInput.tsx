@@ -23,9 +23,13 @@ export const SearchCityNamesInput: FCC = () => {
   };
 
   useGlobalKeyPress("Escape", () => {
-    input.current?.blur();
-    dispatch(setSearch(""));
-    dispatch(setSearchResults());
+    if(state.weather.forecast) {
+      dispatch(resetForecast());
+    } else {
+      input.current?.blur();
+      dispatch(setSearch(""));
+      dispatch(setSearchResults());
+    }
   });
 
   useGlobalKeyPress(["Meta", "k"], () => {

@@ -5,7 +5,7 @@ import { combineReducers } from "app/utils";
 import { weatherSearch } from "features/weatherSearch/weatherSearch.feature";
 
 export type RootState = {
-  weather: any;
+  weather: any
 };
 
 const rootReducer = combineReducers({
