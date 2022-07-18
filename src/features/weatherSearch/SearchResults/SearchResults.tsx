@@ -8,7 +8,7 @@ import {
   useGlobalKeyPress,
   useHighlighter,
 } from "app/ui";
-import { selectItemId, addOrUpdateForecast } from "../weatherSearch.slice";
+import { selectItemId, addOrUpdateForecast } from "../weatherSearch.feature";
 import $ from "./SearchResults.module.css";
 
 export const SearchResults: FCC = () => {
@@ -27,10 +27,10 @@ export const SearchResults: FCC = () => {
         getWeather(lat, lon).then((data) => {
           if (data.main.temp) {
             dispatch(
-              addOrUpdateForecast(
-                listCityIndex,
-                +(data.main.temp / 10).toFixed(1)
-              )
+              addOrUpdateForecast({
+                cityId: listCityIndex,
+                temperature: +(data.main.temp / 10).toFixed(1),
+              })
             );
           }
         });

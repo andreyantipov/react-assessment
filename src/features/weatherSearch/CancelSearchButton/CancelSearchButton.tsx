@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AppStore } from "app";
-import { reset } from "../weatherSearch.slice";
+import { reset } from "../weatherSearch.feature";
 import { Button } from "app/ui";
 
 export const CancelSearchButton = () => {

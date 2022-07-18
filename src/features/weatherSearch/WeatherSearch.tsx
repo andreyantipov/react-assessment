@@ -2,7 +2,7 @@ import { useRef, useContext } from "react";
 import { AppStore } from "app";
 import { useGlobalDismiss } from "app/ui";
 import { SearchBar } from "./SearchBar/SearchBar";
-import { reset } from './weatherSearch.slice'
+import { reset } from './weatherSearch.feature'
 import { SearchCityNamesInput } from "./SearchCityNamesInput/SearchCityNamesInput";
 import { SearchResults } from './SearchResults/SearchResults'
 import { CancelSearchButton } from "./CancelSearchButton/CancelSearchButton";

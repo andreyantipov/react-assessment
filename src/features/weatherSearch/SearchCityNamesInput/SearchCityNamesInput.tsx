@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef } from "react";
 import { Input, useDebounce, useGlobalKeyPress } from "app/ui";
 import { getCityNames } from "app/api";
 import { AppStore } from "app";
-import { setSearch, setSearchResults, reset, selectItemId, resetForecast } from "../weatherSearch.slice";
+import { setSearch, setSearchResults, reset, selectItemId, resetForecast } from "../weatherSearch.feature";
 
 export const SearchCityNamesInput: FCC = () => {
   const [state, dispatch] = useContext(AppStore);

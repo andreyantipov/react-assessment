@@ -2,21 +2,18 @@ import { useReducer, createContext, useMemo } from "react";
 import { combineReducers } from "app/utils";
 
 // features
-import weather, {
-  WeatherSearchState,
-  weatherSearchReducer,
-} from "features/weatherSearch/weatherSearch.slice";
+import { weatherSearch } from "features/weatherSearch/weatherSearch.feature";
 
 export type RootState = {
-  weather: WeatherSearchState;
+  weather: any;
 };
 
 const rootReducer = combineReducers({
-  weather: weatherSearchReducer,
+  weather: weatherSearch.reducer,
 });
 
 const initialState: RootState = {
-  weather,
+  weather: weatherSearch.initialState,
 };
 
 type AppStoreContext = [
